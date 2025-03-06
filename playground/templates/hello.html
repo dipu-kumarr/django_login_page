@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .product-list {
+            list-style: none;
+            padding: 0;
+        }
+        .product-item {
+            background: white;
+            padding: 15px;
+            margin: 10px auto;
+            width: 50%;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .product-item strong {
+            font-size: 18px;
+            color: #007bff;
+        }
+        .product-item p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .total-count {
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        /* Fix Debug Toolbar Overlapping */
+        #djDebug {
+            z-index: 9999 !important;
+            display: block !important;
+            position: fixed !important;
+            bottom: 0 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Hello {{ name|default:"World" }}</h1>
+
+    {% if products %}
+    <ul class="product-list">
+        {% for product in products %}
+        <li class="product-item">
+            <strong>{{ product.title }}</strong>
+            <p>Description: {{ product.placed_at }}</p>
+            <p>Price: ${{ product.payment_status }}</p>
+            <p>Customer ID: {{ product.customer_id }}</p>
+            <p>Inventory: {{ product.inventory }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No products available.</p>
+    {% endif %}
+
+    <p class="total-count">Total Products: {{ product_count }}</p>
+    
+</body>
+</html>
